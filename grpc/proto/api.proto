@@ -1,7 +1,5 @@
 syntax = "proto3";
-import "google/protobuf/empty.proto";
 package proto;
-
 option go_package = "proto";
 
 message UrlList {
@@ -20,9 +18,10 @@ message TaskCount {
 message Response {
   int64 status = 1;
 }
+message Empty{}
 
 service ApiServer {
   rpc AddUrl (UrlList)returns(Response);
   rpc Limit (UrlList)returns(Response);
-  rpc GetTaskCount (google.protobuf.Empty)returns(TaskCount);
+  rpc GetTaskCount (Empty)returns(TaskCount);
 }
