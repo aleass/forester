@@ -20,8 +20,8 @@ message Response {
 }
 message Empty{}
 
-service ApiServer {
+service Api {
   rpc AddUrl (UrlList)returns(Response);
-  rpc Limit (UrlList)returns(Response);
+  rpc Limit (LimitDown)returns(Response);
   rpc GetTaskCount (Empty)returns(TaskCount);
 }

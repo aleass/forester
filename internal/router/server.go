@@ -11,7 +11,7 @@ import (
 type RouteServer struct {
 	Config *config2.Config
 	Http   *gin.Engine
-	Etcd   proto.ApiServerClient
+	Client proto.ApiClient
 }
 
 func ServerInit(path string) (*RouteServer, error) {
@@ -23,7 +23,7 @@ func ServerInit(path string) (*RouteServer, error) {
 	}
 	server.Config = conf
 	server.Http = NewHttp(conf)
-	server.Etcd = NewEtcd(conf)
+	server.Client = newClient(conf)
 	server.initRouter()
 	return server, nil
 }

@@ -277,17 +277,17 @@ var file_api_proto_rawDesc = []byte{
 	0x28, 0x03, 0x52, 0x05, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x22, 0x22, 0x0a, 0x08, 0x52, 0x65, 0x73,
 	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x16, 0x0a, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x18,
 	0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x22, 0x07, 0x0a,
-	0x05, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x32, 0x90, 0x01, 0x0a, 0x09, 0x41, 0x70, 0x69, 0x53, 0x65,
-	0x72, 0x76, 0x65, 0x72, 0x12, 0x29, 0x0a, 0x06, 0x41, 0x64, 0x64, 0x55, 0x72, 0x6c, 0x12, 0x0e,
-	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x55, 0x72, 0x6c, 0x4c, 0x69, 0x73, 0x74, 0x1a, 0x0f,
-	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12,
-	0x28, 0x0a, 0x05, 0x4c, 0x69, 0x6d, 0x69, 0x74, 0x12, 0x0e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f,
+	0x05, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x32, 0x8c, 0x01, 0x0a, 0x03, 0x41, 0x70, 0x69, 0x12, 0x29,
+	0x0a, 0x06, 0x41, 0x64, 0x64, 0x55, 0x72, 0x6c, 0x12, 0x0e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f,
 	0x2e, 0x55, 0x72, 0x6c, 0x4c, 0x69, 0x73, 0x74, 0x1a, 0x0f, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f,
-	0x2e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x2e, 0x0a, 0x0c, 0x47, 0x65, 0x74,
-	0x54, 0x61, 0x73, 0x6b, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x12, 0x0c, 0x2e, 0x70, 0x72, 0x6f, 0x74,
-	0x6f, 0x2e, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x1a, 0x10, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e,
-	0x54, 0x61, 0x73, 0x6b, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x42, 0x07, 0x5a, 0x05, 0x70, 0x72, 0x6f,
-	0x74, 0x6f, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x2e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x2a, 0x0a, 0x05, 0x4c, 0x69, 0x6d,
+	0x69, 0x74, 0x12, 0x10, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x4c, 0x69, 0x6d, 0x69, 0x74,
+	0x44, 0x6f, 0x77, 0x6e, 0x1a, 0x0f, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x52, 0x65, 0x73,
+	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x2e, 0x0a, 0x0c, 0x47, 0x65, 0x74, 0x54, 0x61, 0x73, 0x6b,
+	0x43, 0x6f, 0x75, 0x6e, 0x74, 0x12, 0x0c, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x45, 0x6d,
+	0x70, 0x74, 0x79, 0x1a, 0x10, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x54, 0x61, 0x73, 0x6b,
+	0x43, 0x6f, 0x75, 0x6e, 0x74, 0x42, 0x07, 0x5a, 0x05, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x06,
+	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -311,12 +311,12 @@ var file_api_proto_goTypes = []interface{}{
 	(*Empty)(nil),     // 4: proto.Empty
 }
 var file_api_proto_depIdxs = []int32{
-	0, // 0: proto.ApiServer.AddUrl:input_type -> proto.UrlList
-	0, // 1: proto.ApiServer.Limit:input_type -> proto.UrlList
-	4, // 2: proto.ApiServer.GetTaskCount:input_type -> proto.Empty
-	3, // 3: proto.ApiServer.AddUrl:output_type -> proto.Response
-	3, // 4: proto.ApiServer.Limit:output_type -> proto.Response
-	2, // 5: proto.ApiServer.GetTaskCount:output_type -> proto.TaskCount
+	0, // 0: proto.Api.AddUrl:input_type -> proto.UrlList
+	1, // 1: proto.Api.Limit:input_type -> proto.LimitDown
+	4, // 2: proto.Api.GetTaskCount:input_type -> proto.Empty
+	3, // 3: proto.Api.AddUrl:output_type -> proto.Response
+	3, // 4: proto.Api.Limit:output_type -> proto.Response
+	2, // 5: proto.Api.GetTaskCount:output_type -> proto.TaskCount
 	3, // [3:6] is the sub-list for method output_type
 	0, // [0:3] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
@@ -419,144 +419,144 @@ var _ grpc.ClientConnInterface
 // is compatible with the grpc package it is being compiled against.
 const _ = grpc.SupportPackageIsVersion6
 
-// ApiServerClient is the client API for ApiServer service.
+// ApiClient is the client API for Api service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
-type ApiServerClient interface {
+type ApiClient interface {
 	AddUrl(ctx context.Context, in *UrlList, opts ...grpc.CallOption) (*Response, error)
-	Limit(ctx context.Context, in *UrlList, opts ...grpc.CallOption) (*Response, error)
+	Limit(ctx context.Context, in *LimitDown, opts ...grpc.CallOption) (*Response, error)
 	GetTaskCount(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*TaskCount, error)
 }
 
-type apiServerClient struct {
+type apiClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewApiServerClient(cc grpc.ClientConnInterface) ApiServerClient {
-	return &apiServerClient{cc}
+func NewApiClient(cc grpc.ClientConnInterface) ApiClient {
+	return &apiClient{cc}
 }
 
-func (c *apiServerClient) AddUrl(ctx context.Context, in *UrlList, opts ...grpc.CallOption) (*Response, error) {
+func (c *apiClient) AddUrl(ctx context.Context, in *UrlList, opts ...grpc.CallOption) (*Response, error) {
 	out := new(Response)
-	err := c.cc.Invoke(ctx, "/proto.ApiServer/AddUrl", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/proto.Api/AddUrl", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *apiServerClient) Limit(ctx context.Context, in *UrlList, opts ...grpc.CallOption) (*Response, error) {
+func (c *apiClient) Limit(ctx context.Context, in *LimitDown, opts ...grpc.CallOption) (*Response, error) {
 	out := new(Response)
-	err := c.cc.Invoke(ctx, "/proto.ApiServer/Limit", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/proto.Api/Limit", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *apiServerClient) GetTaskCount(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*TaskCount, error) {
+func (c *apiClient) GetTaskCount(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*TaskCount, error) {
 	out := new(TaskCount)
-	err := c.cc.Invoke(ctx, "/proto.ApiServer/GetTaskCount", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/proto.Api/GetTaskCount", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// ApiServerServer is the server API for ApiServer service.
-type ApiServerServer interface {
+// ApiServer is the server API for Api service.
+type ApiServer interface {
 	AddUrl(context.Context, *UrlList) (*Response, error)
-	Limit(context.Context, *UrlList) (*Response, error)
+	Limit(context.Context, *LimitDown) (*Response, error)
 	GetTaskCount(context.Context, *Empty) (*TaskCount, error)
 }
 
-// UnimplementedApiServerServer can be embedded to have forward compatible implementations.
-type UnimplementedApiServerServer struct {
+// UnimplementedApiServer can be embedded to have forward compatible implementations.
+type UnimplementedApiServer struct {
 }
 
-func (*UnimplementedApiServerServer) AddUrl(context.Context, *UrlList) (*Response, error) {
+func (*UnimplementedApiServer) AddUrl(context.Context, *UrlList) (*Response, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddUrl not implemented")
 }
-func (*UnimplementedApiServerServer) Limit(context.Context, *UrlList) (*Response, error) {
+func (*UnimplementedApiServer) Limit(context.Context, *LimitDown) (*Response, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Limit not implemented")
 }
-func (*UnimplementedApiServerServer) GetTaskCount(context.Context, *Empty) (*TaskCount, error) {
+func (*UnimplementedApiServer) GetTaskCount(context.Context, *Empty) (*TaskCount, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetTaskCount not implemented")
 }
 
-func RegisterApiServerServer(s *grpc.Server, srv ApiServerServer) {
-	s.RegisterService(&_ApiServer_serviceDesc, srv)
+func RegisterApiServer(s *grpc.Server, srv ApiServer) {
+	s.RegisterService(&_Api_serviceDesc, srv)
 }
 
-func _ApiServer_AddUrl_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Api_AddUrl_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(UrlList)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ApiServerServer).AddUrl(ctx, in)
+		return srv.(ApiServer).AddUrl(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/proto.ApiServer/AddUrl",
+		FullMethod: "/proto.Api/AddUrl",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ApiServerServer).AddUrl(ctx, req.(*UrlList))
+		return srv.(ApiServer).AddUrl(ctx, req.(*UrlList))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ApiServer_Limit_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UrlList)
+func _Api_Limit_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(LimitDown)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ApiServerServer).Limit(ctx, in)
+		return srv.(ApiServer).Limit(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/proto.ApiServer/Limit",
+		FullMethod: "/proto.Api/Limit",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ApiServerServer).Limit(ctx, req.(*UrlList))
+		return srv.(ApiServer).Limit(ctx, req.(*LimitDown))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ApiServer_GetTaskCount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Api_GetTaskCount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ApiServerServer).GetTaskCount(ctx, in)
+		return srv.(ApiServer).GetTaskCount(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/proto.ApiServer/GetTaskCount",
+		FullMethod: "/proto.Api/GetTaskCount",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ApiServerServer).GetTaskCount(ctx, req.(*Empty))
+		return srv.(ApiServer).GetTaskCount(ctx, req.(*Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-var _ApiServer_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "proto.ApiServer",
-	HandlerType: (*ApiServerServer)(nil),
+var _Api_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "proto.Api",
+	HandlerType: (*ApiServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "AddUrl",
-			Handler:    _ApiServer_AddUrl_Handler,
+			Handler:    _Api_AddUrl_Handler,
 		},
 		{
 			MethodName: "Limit",
-			Handler:    _ApiServer_Limit_Handler,
+			Handler:    _Api_Limit_Handler,
 		},
 		{
 			MethodName: "GetTaskCount",
-			Handler:    _ApiServer_GetTaskCount_Handler,
+			Handler:    _Api_GetTaskCount_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

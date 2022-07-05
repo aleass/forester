@@ -29,7 +29,7 @@ const (
 // of the legacy proto package is being used.
 const _ = proto.ProtoPackageIsVersion4
 
-type Task struct {
+type TaskReq struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -38,8 +38,8 @@ type Task struct {
 	Uuid int64  `protobuf:"varint,2,opt,name=uuid,proto3" json:"uuid,omitempty"`
 }
 
-func (x *Task) Reset() {
-	*x = Task{}
+func (x *TaskReq) Reset() {
+	*x = TaskReq{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_task_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -47,13 +47,13 @@ func (x *Task) Reset() {
 	}
 }
 
-func (x *Task) String() string {
+func (x *TaskReq) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*Task) ProtoMessage() {}
+func (*TaskReq) ProtoMessage() {}
 
-func (x *Task) ProtoReflect() protoreflect.Message {
+func (x *TaskReq) ProtoReflect() protoreflect.Message {
 	mi := &file_task_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -65,19 +65,19 @@ func (x *Task) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use Task.ProtoReflect.Descriptor instead.
-func (*Task) Descriptor() ([]byte, []int) {
+// Deprecated: Use TaskReq.ProtoReflect.Descriptor instead.
+func (*TaskReq) Descriptor() ([]byte, []int) {
 	return file_task_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *Task) GetUrl() string {
+func (x *TaskReq) GetUrl() string {
 	if x != nil {
 		return x.Url
 	}
 	return ""
 }
 
-func (x *Task) GetUuid() int64 {
+func (x *TaskReq) GetUuid() int64 {
 	if x != nil {
 		return x.Uuid
 	}
@@ -135,16 +135,16 @@ var File_task_proto protoreflect.FileDescriptor
 
 var file_task_proto_rawDesc = []byte{
 	0x0a, 0x0a, 0x74, 0x61, 0x73, 0x6b, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x05, 0x70, 0x72,
-	0x6f, 0x74, 0x6f, 0x22, 0x2c, 0x0a, 0x04, 0x54, 0x61, 0x73, 0x6b, 0x12, 0x10, 0x0a, 0x03, 0x55,
-	0x72, 0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x55, 0x72, 0x6c, 0x12, 0x12, 0x0a,
-	0x04, 0x75, 0x75, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x03, 0x52, 0x04, 0x75, 0x75, 0x69,
-	0x64, 0x22, 0x1c, 0x0a, 0x06, 0x46, 0x69, 0x6e, 0x69, 0x73, 0x68, 0x12, 0x12, 0x0a, 0x04, 0x75,
-	0x75, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x04, 0x75, 0x75, 0x69, 0x64, 0x32,
-	0x39, 0x0a, 0x0b, 0x54, 0x61, 0x73, 0x6b, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x2a,
-	0x0a, 0x08, 0x53, 0x65, 0x6e, 0x64, 0x54, 0x61, 0x73, 0x6b, 0x12, 0x0b, 0x2e, 0x70, 0x72, 0x6f,
-	0x74, 0x6f, 0x2e, 0x54, 0x61, 0x73, 0x6b, 0x1a, 0x0d, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e,
-	0x46, 0x69, 0x6e, 0x69, 0x73, 0x68, 0x28, 0x01, 0x30, 0x01, 0x42, 0x09, 0x5a, 0x07, 0x2e, 0x3b,
-	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x6f, 0x74, 0x6f, 0x22, 0x2f, 0x0a, 0x07, 0x54, 0x61, 0x73, 0x6b, 0x52, 0x65, 0x71, 0x12, 0x10,
+	0x0a, 0x03, 0x55, 0x72, 0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x55, 0x72, 0x6c,
+	0x12, 0x12, 0x0a, 0x04, 0x75, 0x75, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x03, 0x52, 0x04,
+	0x75, 0x75, 0x69, 0x64, 0x22, 0x1c, 0x0a, 0x06, 0x46, 0x69, 0x6e, 0x69, 0x73, 0x68, 0x12, 0x12,
+	0x0a, 0x04, 0x75, 0x75, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x04, 0x75, 0x75,
+	0x69, 0x64, 0x32, 0x35, 0x0a, 0x04, 0x54, 0x61, 0x73, 0x6b, 0x12, 0x2d, 0x0a, 0x08, 0x53, 0x65,
+	0x6e, 0x64, 0x54, 0x61, 0x73, 0x6b, 0x12, 0x0e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x54,
+	0x61, 0x73, 0x6b, 0x52, 0x65, 0x71, 0x1a, 0x0d, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x46,
+	0x69, 0x6e, 0x69, 0x73, 0x68, 0x28, 0x01, 0x30, 0x01, 0x42, 0x09, 0x5a, 0x07, 0x2e, 0x3b, 0x70,
+	0x72, 0x6f, 0x74, 0x6f, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -161,12 +161,12 @@ func file_task_proto_rawDescGZIP() []byte {
 
 var file_task_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
 var file_task_proto_goTypes = []interface{}{
-	(*Task)(nil),   // 0: proto.Task
-	(*Finish)(nil), // 1: proto.Finish
+	(*TaskReq)(nil), // 0: proto.TaskReq
+	(*Finish)(nil),  // 1: proto.Finish
 }
 var file_task_proto_depIdxs = []int32{
-	0, // 0: proto.TaskService.SendTask:input_type -> proto.Task
-	1, // 1: proto.TaskService.SendTask:output_type -> proto.Finish
+	0, // 0: proto.Task.SendTask:input_type -> proto.TaskReq
+	1, // 1: proto.Task.SendTask:output_type -> proto.Finish
 	1, // [1:2] is the sub-list for method output_type
 	0, // [0:1] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
@@ -181,7 +181,7 @@ func file_task_proto_init() {
 	}
 	if !protoimpl.UnsafeEnabled {
 		file_task_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Task); i {
+			switch v := v.(*TaskReq); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -233,45 +233,45 @@ var _ grpc.ClientConnInterface
 // is compatible with the grpc package it is being compiled against.
 const _ = grpc.SupportPackageIsVersion6
 
-// TaskServiceClient is the client API for TaskService service.
+// TaskClient is the client API for Task service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
-type TaskServiceClient interface {
-	SendTask(ctx context.Context, opts ...grpc.CallOption) (TaskService_SendTaskClient, error)
+type TaskClient interface {
+	SendTask(ctx context.Context, opts ...grpc.CallOption) (Task_SendTaskClient, error)
 }
 
-type taskServiceClient struct {
+type taskClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewTaskServiceClient(cc grpc.ClientConnInterface) TaskServiceClient {
-	return &taskServiceClient{cc}
+func NewTaskClient(cc grpc.ClientConnInterface) TaskClient {
+	return &taskClient{cc}
 }
 
-func (c *taskServiceClient) SendTask(ctx context.Context, opts ...grpc.CallOption) (TaskService_SendTaskClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_TaskService_serviceDesc.Streams[0], "/proto.TaskService/SendTask", opts...)
+func (c *taskClient) SendTask(ctx context.Context, opts ...grpc.CallOption) (Task_SendTaskClient, error) {
+	stream, err := c.cc.NewStream(ctx, &_Task_serviceDesc.Streams[0], "/proto.Task/SendTask", opts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &taskServiceSendTaskClient{stream}
+	x := &taskSendTaskClient{stream}
 	return x, nil
 }
 
-type TaskService_SendTaskClient interface {
-	Send(*Task) error
+type Task_SendTaskClient interface {
+	Send(*TaskReq) error
 	Recv() (*Finish, error)
 	grpc.ClientStream
 }
 
-type taskServiceSendTaskClient struct {
+type taskSendTaskClient struct {
 	grpc.ClientStream
 }
 
-func (x *taskServiceSendTaskClient) Send(m *Task) error {
+func (x *taskSendTaskClient) Send(m *TaskReq) error {
 	return x.ClientStream.SendMsg(m)
 }
 
-func (x *taskServiceSendTaskClient) Recv() (*Finish, error) {
+func (x *taskSendTaskClient) Recv() (*Finish, error) {
 	m := new(Finish)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
@@ -279,57 +279,57 @@ func (x *taskServiceSendTaskClient) Recv() (*Finish, error) {
 	return m, nil
 }
 
-// TaskServiceServer is the server API for TaskService service.
-type TaskServiceServer interface {
-	SendTask(TaskService_SendTaskServer) error
+// TaskServer is the server API for Task service.
+type TaskServer interface {
+	SendTask(Task_SendTaskServer) error
 }
 
-// UnimplementedTaskServiceServer can be embedded to have forward compatible implementations.
-type UnimplementedTaskServiceServer struct {
+// UnimplementedTaskServer can be embedded to have forward compatible implementations.
+type UnimplementedTaskServer struct {
 }
 
-func (*UnimplementedTaskServiceServer) SendTask(TaskService_SendTaskServer) error {
+func (*UnimplementedTaskServer) SendTask(Task_SendTaskServer) error {
 	return status.Errorf(codes.Unimplemented, "method SendTask not implemented")
 }
 
-func RegisterTaskServiceServer(s *grpc.Server, srv TaskServiceServer) {
-	s.RegisterService(&_TaskService_serviceDesc, srv)
+func RegisterTaskServer(s *grpc.Server, srv TaskServer) {
+	s.RegisterService(&_Task_serviceDesc, srv)
 }
 
-func _TaskService_SendTask_Handler(srv interface{}, stream grpc.ServerStream) error {
-	return srv.(TaskServiceServer).SendTask(&taskServiceSendTaskServer{stream})
+func _Task_SendTask_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(TaskServer).SendTask(&taskSendTaskServer{stream})
 }
 
-type TaskService_SendTaskServer interface {
+type Task_SendTaskServer interface {
 	Send(*Finish) error
-	Recv() (*Task, error)
+	Recv() (*TaskReq, error)
 	grpc.ServerStream
 }
 
-type taskServiceSendTaskServer struct {
+type taskSendTaskServer struct {
 	grpc.ServerStream
 }
 
-func (x *taskServiceSendTaskServer) Send(m *Finish) error {
+func (x *taskSendTaskServer) Send(m *Finish) error {
 	return x.ServerStream.SendMsg(m)
 }
 
-func (x *taskServiceSendTaskServer) Recv() (*Task, error) {
-	m := new(Task)
+func (x *taskSendTaskServer) Recv() (*TaskReq, error) {
+	m := new(TaskReq)
 	if err := x.ServerStream.RecvMsg(m); err != nil {
 		return nil, err
 	}
 	return m, nil
 }
 
-var _TaskService_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "proto.TaskService",
-	HandlerType: (*TaskServiceServer)(nil),
+var _Task_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "proto.Task",
+	HandlerType: (*TaskServer)(nil),
 	Methods:     []grpc.MethodDesc{},
 	Streams: []grpc.StreamDesc{
 		{
 			StreamName:    "SendTask",
-			Handler:       _TaskService_SendTask_Handler,
+			Handler:       _Task_SendTask_Handler,
 			ServerStreams: true,
 			ClientStreams: true,
 		},

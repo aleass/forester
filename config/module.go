@@ -1,11 +1,11 @@
 package config
 
 type Config struct {
-	Redis Redis `yaml:"redis"`
-	Etcd  Etcd  `yaml:"etcd"`
-	Http  Http  `yaml:"http"`
-	Grpc  Grpc  `yaml:"grpc"`
-	Grpc2 Grpc  `yaml:"grpc2"`
+	Redis    Redis `yaml:"redis"`
+	Etcd     Etcd  `yaml:"etcd"`
+	Http     Http  `yaml:"http"`
+	ApiGrpc  Grpc  `yaml:"api_grpc"`
+	TaskGrpc Grpc  `yaml:"task_grpc"`
 }
 type Redis struct {
 	Addr string `yaml:"addr"`
