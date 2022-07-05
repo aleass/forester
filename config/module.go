@@ -2,13 +2,15 @@ package config
 
 type Config struct {
 	Redis Redis `yaml:"redis"`
-	Etcd  Etcds `yaml:"etcd"`
+	Etcd  Etcd  `yaml:"etcd"`
+	Http  Http  `yaml:"http"`
 }
 type Redis struct {
-	Ip   string `yaml:"ip"`
-	Port int    `yaml:"port"`
+	Addr string `yaml:"addr"`
 }
-type Etcds struct {
-	Ip   string `yaml:"ip"`
-	Port string `yaml:"port"`
+type Etcd struct {
+	Addr string `yaml:"addr"`
+}
+type Http struct {
+	Addr string `yaml:"addr"`
 }

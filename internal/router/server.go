@@ -2,14 +2,16 @@ package router
 
 import (
 	config2 "Forester/config"
+	proto "Forester/grpc"
 	"Forester/internal/config"
-	redis "cloud.google.com/go/redis/apiv1"
 	"fmt"
+	"github.com/gin-gonic/gin"
 )
 
 type RouteServer struct {
 	Config *config2.Config
-	Redis  *redis.CloudRedisClient
+	Http   *gin.Engine
+	Etcd   proto.ApiServerClient
 }
 
 func ServerInit(path string) (*RouteServer, error) {
@@ -20,5 +22,11 @@ func ServerInit(path string) (*RouteServer, error) {
 		return nil, err
 	}
 	server.Config = conf
+	server.Http = NewHttp(conf)
+	server.Etcd = NewEtcd(conf)
+	server.initRouter()
 	return server, nil
+}
+func (r *RouteServer) Close() {
+
 }
