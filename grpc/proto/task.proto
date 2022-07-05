@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package proto;
+
+option go_package = ".;proto";
+
+message Task {
+  string Url = 1;
+  int64 uuid = 2;
+}
+
+message Response {
+    int64 uuid = 1;
+}
+
+service TaskService {
+    rpc SendTask (stream Task)returns(stream Response);
+}

@@ -1,32 +1,24 @@
-package manager
+package router
 
 import (
 	config2 "Forester/config"
 	"Forester/internal/config"
 	redis "cloud.google.com/go/redis/apiv1"
 	"fmt"
-	client "go.etcd.io/etcd/client/v3"
 )
 
-type Server struct {
+type RouteServer struct {
 	Config *config2.Config
-	Etcd   *client.Client
 	Redis  *redis.CloudRedisClient
 }
 
-func ServerInit(path string) (*Server, error) {
-	server := new(Server)
+func ServerInit(path string) (*RouteServer, error) {
+	server := new(RouteServer)
 	conf, err := config.InitConfig(path)
 	if err != nil {
 		fmt.Println(err.Error())
 		return nil, err
 	}
 	server.Config = conf
-
-	err = server.newEtcd()
-	if err != nil {
-		fmt.Println(err.Error())
-		return nil, err
-	}
 	return server, nil
 }

@@ -1,0 +1,28 @@
+syntax = "proto3";
+import "google/protobuf/empty.proto";
+package proto;
+
+option go_package = "proto";
+
+message UrlList {
+  repeated string Url = 1;
+  int64 count = 2;
+}
+
+message LimitDown {
+  int64 rate = 1;
+}
+
+message TaskCount {
+  int64 count = 1;
+}
+
+message Response {
+  int64 status = 1;
+}
+
+service ApiServer {
+  rpc AddUrl (UrlList)returns(Response);
+  rpc Limit (UrlList)returns(Response);
+  rpc GetTaskCount (google.protobuf.Empty)returns(TaskCount);
+}
