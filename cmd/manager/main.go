@@ -2,7 +2,9 @@ package main
 
 import (
 	"Forester/internal/manager"
-	"fmt"
+	"os"
+	"os/signal"
+	"syscall"
 )
 
 func main() {
@@ -10,5 +12,8 @@ func main() {
 	if err != nil {
 		panic(err.Error())
 	}
-	fmt.Println(server)
+	c := make(chan os.Signal, 1)
+	signal.Notify(c, syscall.SIGHUP, syscall.SIGQUIT, syscall.SIGTERM, syscall.SIGINT)
+	<-c
+	server.Close()
 }

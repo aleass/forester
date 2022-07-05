@@ -28,5 +28,9 @@ func ServerInit(path string) (*Server, error) {
 		fmt.Println(err.Error())
 		return nil, err
 	}
+	newServer(conf)
 	return server, nil
+}
+func (s Server) Close() {
+
 }

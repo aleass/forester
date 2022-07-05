@@ -11,3 +11,7 @@ grpc:
 #router
 http:
   addr: 127.0.0.1:6868
+
+#task
+grpc2:
+  ip: 127.0.0.1:8081
