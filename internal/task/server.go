@@ -8,14 +8,18 @@ import (
 	clientv3 "go.etcd.io/etcd/client/v3"
 )
 
-type RouteServer struct {
+type Server struct {
 	Config *config2.Config
 	Http   *gin.Engine
 	Etcd   *clientv3.Client
+	task   chan *TaskInfo
 }
 
-func ServerInit(path string) (*RouteServer, error) {
-	server := new(RouteServer)
+var server *Server
+
+func ServerInit(path string) (*Server, error) {
+	server = new(Server)
+	server.task = make(chan *TaskInfo, 1000)
 	conf, err := config.InitConfig(path)
 	if err != nil {
 		fmt.Println(err.Error())
@@ -26,6 +30,6 @@ func ServerInit(path string) (*RouteServer, error) {
 	newGrpc(conf)
 	return server, nil
 }
-func (r *RouteServer) Close() {
+func (s *Server) Close() {
 
 }

@@ -18,6 +18,13 @@ func newServer(conf *config.Config) {
 	}
 	grpcServer.Serve(lis)
 }
+func newClient(conf *config.Config) proto.TaskClient {
+	conn, err := grpc.Dial(conf.ApiGrpc.Addr, grpc.WithInsecure())
+	if err != nil {
+		panic(err.Error())
+	}
+	return proto.NewTaskClient(conn)
+}
 
 type service struct {
 }
@@ -33,6 +40,10 @@ func (s service) GetTaskCount(ctx context.Context, empty *proto.Empty) (*proto.T
 }
 
 func (s service) AddUrl(ctx context.Context, list *proto.UrlList) (*proto.Response, error) {
-	fmt.Println(list.Url)
+	go func() {
+		for _, url := range list.Url {
+			server.url <- url
+		}
+	}()
 	return &proto.Response{}, nil
 }

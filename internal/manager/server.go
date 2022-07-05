@@ -2,8 +2,8 @@ package manager
 
 import (
 	config2 "Forester/config"
+	proto "Forester/grpc"
 	"Forester/internal/config"
-	redis "cloud.google.com/go/redis/apiv1"
 	"fmt"
 	client "go.etcd.io/etcd/client/v3"
 )
@@ -11,11 +11,14 @@ import (
 type Server struct {
 	Config *config2.Config
 	Etcd   *client.Client
-	Redis  *redis.CloudRedisClient
+	Client proto.TaskClient
+	url    chan string
 }
 
+var server *Server
+
 func ServerInit(path string) (*Server, error) {
-	server := new(Server)
+	server = new(Server)
 	conf, err := config.InitConfig(path)
 	if err != nil {
 		fmt.Println(err.Error())
@@ -29,8 +32,16 @@ func ServerInit(path string) (*Server, error) {
 		return nil, err
 	}
 	newServer(conf)
+	server.Client = newClient(conf)
 	return server, nil
 }
+
+func (s Server) run() {
+	for true {
+
+	}
+}
+
 func (s Server) Close() {
 
 }
