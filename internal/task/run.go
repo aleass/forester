@@ -3,35 +3,35 @@ package task
 type TaskInfo struct {
 	Url  string
 	Uuid int64
-	pre  *TaskInfo
-	next *TaskInfo
+	Pre  *TaskInfo
+	Next *TaskInfo
 }
 
 func (s *Server) run() {
 
 }
 
-func (g *Server) Add(s *TaskInfo) {
-	if g.task != nil {
-		s.next = g.task.next
-		g.task.pre = s
-	}
-	g.task = s
-}
+//func (g *Server) Add(s *TaskInfo) {
+//	if g.task != nil {
+//		s.Next = g.task.Next
+//		g.task.Pre = s
+//	}
+//	g.task = s
+//}
 
-func (g *Server) Del(s *TaskInfo) {
-	if s == nil {
-		return
-	}
-	if s.pre == nil { //第一位
-		g.task = s.next
-		if s.next != nil { //有第二位
-			s.next.pre = nil
-		}
-	} else if s.next == nil { //末尾
-		s.pre.next = nil
-	} else { //中间
-		s.pre.next = s.next
-		s.next.pre = s.pre
-	}
-}
+//func (g *Server) Del(s *TaskInfo) {
+//	if s == nil {
+//		return
+//	}
+//	if s.Pre == nil { //第一位
+//		g.task = s.Next
+//		if s.Next != nil { //有第二位
+//			s.Next.Pre = nil
+//		}
+//	} else if s.Next == nil { //末尾
+//		s.Pre.Next = nil
+//	} else { //中间
+//		s.Pre.Next = s.Next
+//		s.Next.Pre = s.Pre
+//	}
+//}

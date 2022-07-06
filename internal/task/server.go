@@ -4,13 +4,11 @@ import (
 	config2 "Forester/config"
 	"Forester/internal/config"
 	"fmt"
-	"github.com/gin-gonic/gin"
 	clientv3 "go.etcd.io/etcd/client/v3"
 )
 
 type Server struct {
 	Config *config2.Config
-	Http   *gin.Engine
 	Etcd   *clientv3.Client
 	task   chan *TaskInfo
 }
@@ -27,7 +25,8 @@ func ServerInit(path string) (*Server, error) {
 	}
 	server.Config = conf
 	server.Etcd, _ = newEtcd(conf)
-	newGrpc(conf)
+	go newGrpc(conf)
+	server.register()
 	return server, nil
 }
 func (s *Server) Close() {

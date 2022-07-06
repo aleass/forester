@@ -9,6 +9,15 @@ import (
 	"net"
 )
 
+type clientLink struct {
+	member *clients
+}
+type clients struct {
+	client *proto.TaskClient
+	next   *clients
+	pre    *clients
+}
+
 func newServer(conf *config.Config) {
 	grpcServer := grpc.NewServer()
 	proto.RegisterApiServer(grpcServer, &service{})
@@ -18,12 +27,13 @@ func newServer(conf *config.Config) {
 	}
 	grpcServer.Serve(lis)
 }
-func newClient(conf *config.Config) proto.TaskClient {
-	conn, err := grpc.Dial(conf.ApiGrpc.Addr, grpc.WithInsecure())
+func (s Server) newClient(conf *config.Config) {
+	conn, err := grpc.Dial(s.Config.ApiGrpc.Addr, grpc.WithInsecure())
 	if err != nil {
 		panic(err.Error())
 	}
-	return proto.NewTaskClient(conn)
+	client := proto.NewTaskClient(conn)
+	client.SendTask(context.Background())
 }
 
 type service struct {
@@ -46,4 +56,29 @@ func (s service) AddUrl(ctx context.Context, list *proto.UrlList) (*proto.Respon
 		}
 	}()
 	return &proto.Response{}, nil
+}
+
+func (g *clientLink) Add(s *clients) {
+	if g.member != nil {
+		s.next = g.member.next
+		g.member.pre = s
+	}
+	g.member = s
+}
+
+func (g *clientLink) Del(s *clients) {
+	if s == nil {
+		return
+	}
+	if s.pre == nil { //第一位
+		g.member = s.next
+		if s.next != nil { //有第二位
+			s.next.pre = nil
+		}
+	} else if s.next == nil { //末尾
+		s.pre.next = nil
+	} else { //中间
+		s.pre.next = s.next
+		s.next.pre = s.pre
+	}
 }

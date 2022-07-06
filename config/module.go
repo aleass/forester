@@ -11,7 +11,8 @@ type Redis struct {
 	Addr string `yaml:"addr"`
 }
 type Etcd struct {
-	Addr string `yaml:"addr"`
+	Addr    string `yaml:"addr"`
+	TaskPre string `yaml:"task_pre"`
 }
 type Http struct {
 	Addr string `yaml:"addr"`

@@ -3,7 +3,8 @@ redis:
   addr: 127.0.0.1:6379
 
 etcd:
-  addr: 127.0.0.1:6789
+  addr: 127.0.0.1:2379
+  task_pre: task/
 
 api_grpc:
   addr: 127.0.0.1:8080
@@ -14,4 +15,4 @@ http:
 
 #task
 task_grpc:
-  addr: 127.0.0.1:8081
+  addr: 127.0.0.1:8888
