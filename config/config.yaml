@@ -15,4 +15,4 @@ http:
 
 #task
 task_grpc:
-  addr: 127.0.0.1:8888
+  port: 8888

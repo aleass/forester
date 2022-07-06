@@ -13,9 +13,11 @@ type clientLink struct {
 	member *clients
 }
 type clients struct {
-	client *proto.TaskClient
-	next   *clients
-	pre    *clients
+	client   *proto.TaskClient
+	isDoing  bool
+	taskList chan string
+	next     *clients
+	pre      *clients
 }
 
 func newServer(conf *config.Config) {
@@ -26,14 +28,6 @@ func newServer(conf *config.Config) {
 		fmt.Println(err)
 	}
 	grpcServer.Serve(lis)
-}
-func (s Server) newClient(conf *config.Config) {
-	conn, err := grpc.Dial(s.Config.ApiGrpc.Addr, grpc.WithInsecure())
-	if err != nil {
-		panic(err.Error())
-	}
-	client := proto.NewTaskClient(conn)
-	client.SendTask(context.Background())
 }
 
 type service struct {

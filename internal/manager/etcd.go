@@ -26,7 +26,7 @@ func (s *Server) watch() {
 			for _, event := range response.Events {
 				key := string(event.Kv.Key)
 				if event.Type == mvccpb.PUT {
-					s.crawl[key] = s.NewClient()
+					s.crawl[key] = s.NewClient(string(event.Kv.Value))
 				} else {
 					delete(s.crawl, key)
 				}
@@ -35,22 +35,24 @@ func (s *Server) watch() {
 	}
 }
 
-//func (s *Server) GetAllClient() {
-//	res, err := s.Etcd.Get(context.Background(), s.Config.Etcd.TaskPre, client.WithPrefix())
-//	if err != nil {
-//		fmt.Println(err.Error())
-//	}
-//	for _, v := range res.Kvs {
-//
-//	}
-//}
+func (s *Server) GetClient() {
+	res, err := s.Etcd.Get(context.Background(), s.Config.Etcd.TaskPre, client.WithPrefix())
+	if err != nil {
+		panic(err.Error())
+	}
+	for _, v := range res.Kvs {
+		s.crawl[string(v.Key)] = s.NewClient(string(v.Value))
+	}
+}
 
-func (s *Server) NewClient() proto.TaskClient {
-	conn, err := grpc.Dial(s.Config.ApiGrpc.Addr, grpc.WithInsecure())
+func (s *Server) NewClient(addr string) *clients {
+	conn, err := grpc.Dial(addr, grpc.WithInsecure())
 	if err != nil {
 		panic(err.Error())
 	}
 	client := proto.NewTaskClient(conn)
-	client.SendTask(context.Background())
-	return client
+	return &clients{
+		client:   &client,
+		taskList: make(chan string, 1000),
+	}
 }
