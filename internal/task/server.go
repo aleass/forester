@@ -1,16 +1,14 @@
 package task
 
 import (
-	config2 "Forester/config"
-	"Forester/internal/config"
-	"fmt"
-	clientv3 "go.etcd.io/etcd/client/v3"
+	"Forester/internal/pkg"
+	client3 "go.etcd.io/etcd/client/v3"
 )
 
 type Server struct {
-	Config *config2.Config
-	Etcd   *clientv3.Client
-	task   chan *TaskInfo
+	Config *pkg.Config
+	Etcd   *client3.Client
+	task   chan *TasksObj
 	addr   string
 }
 
@@ -18,15 +16,17 @@ var server *Server
 
 func ServerInit(path string) (*Server, error) {
 	server = new(Server)
-	server.task = make(chan *TaskInfo, 1000)
-	conf, err := config.InitConfig(path)
-	server.addr = InternalIP() + ":" + conf.TaskGrpc.Port
+	server.task = make(chan *TasksObj, 1000)
+	conf, err := pkg.InitConfig(path)
+	server.addr = pkg.InternalIP() + ":" + conf.TaskGrpc.Port
 	if err != nil {
-		fmt.Println(err.Error())
-		return nil, err
+		panic(err.Error())
 	}
 	server.Config = conf
-	server.Etcd, _ = newEtcd(conf)
+	server.Etcd, err = newEtcd(conf)
+	if err != nil {
+		panic(err.Error())
+	}
 	go server.newGrpc()
 	server.register()
 	return server, nil

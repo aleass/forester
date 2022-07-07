@@ -2,6 +2,7 @@ package task
 
 import (
 	proto "Forester/grpc"
+	"context"
 	"fmt"
 	"google.golang.org/grpc"
 	"net"
@@ -21,6 +22,21 @@ func (s *Server) newGrpc() {
 type serviceGrpc struct {
 }
 
+func (s serviceGrpc) GetTaskCount(ctx context.Context, empty *proto.Empty) (*proto.Count, error) {
+	fmt.Println("task run get task count", len(server.task))
+	return &proto.Count{Num: int64(len(server.task))}, nil
+}
+
+func (s serviceGrpc) Limit(ctx context.Context, down *proto.LimitDown) (*proto.Response, error) {
+	if down.Rate == -1 {
+		limit = maxLimit
+	} else {
+		limit = uint64(down.Rate)
+	}
+	fmt.Println("task run limit :", limit)
+	return &proto.Response{}, nil
+}
+
 func (s serviceGrpc) SendTask(res proto.Task_SendTaskServer) error {
 	//accept
 	go func() {
@@ -28,9 +44,9 @@ func (s serviceGrpc) SendTask(res proto.Task_SendTaskServer) error {
 			task, err := res.Recv()
 			if err != nil {
 				fmt.Println(err.Error())
-				continue
+				return
 			}
-			server.task <- &TaskInfo{
+			server.task <- &TasksObj{
 				Uuid: task.Uuid,
 				Url:  task.Url,
 			}

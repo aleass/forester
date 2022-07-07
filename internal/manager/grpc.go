@@ -1,9 +1,9 @@
 package manager
 
 import (
-	"Forester/config"
 	proto "Forester/grpc"
-	context "context"
+	"Forester/internal/pkg"
+	"context"
 	"fmt"
 	"google.golang.org/grpc"
 	"net"
@@ -13,14 +13,15 @@ type clientLink struct {
 	member *clients
 }
 type clients struct {
-	client   *proto.TaskClient
-	isDoing  bool
-	taskList chan string
-	next     *clients
-	pre      *clients
+	client    *proto.TaskClient
+	isDoing   bool
+	taskCount int64
+	taskList  chan string
+	next      *clients
+	pre       *clients
 }
 
-func newServer(conf *config.Config) {
+func newServer(conf *pkg.Config) {
 	grpcServer := grpc.NewServer()
 	proto.RegisterApiServer(grpcServer, &service{})
 	lis, err := net.Listen("tcp", conf.ApiGrpc.Addr)
@@ -34,17 +35,24 @@ type service struct {
 }
 
 func (s service) Limit(ctx context.Context, down *proto.LimitDown) (*proto.Response, error) {
-	fmt.Println(down.Rate)
+	fmt.Println("manager set limit rate:", down.Rate)
+	server.limit = down.Rate
+	server.Limit()
 	return &proto.Response{}, nil
 }
 
 func (s service) GetTaskCount(ctx context.Context, empty *proto.Empty) (*proto.TaskCount, error) {
-	//TODO implement me
-	panic("implement me")
+	var count int64
+	for _, c := range server.crawl {
+		count += c.taskCount
+	}
+	fmt.Println("manager get count:", count)
+	return &proto.TaskCount{Count: count}, nil
 }
 
 func (s service) AddUrl(ctx context.Context, list *proto.UrlList) (*proto.Response, error) {
 	go func() {
+		fmt.Println("manager add url:", len(list.Url))
 		for _, url := range list.Url {
 			server.url <- url
 		}

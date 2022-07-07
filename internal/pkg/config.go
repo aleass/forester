@@ -1,4 +1,22 @@
-package config
+package pkg
+
+import (
+	"gopkg.in/yaml.v2"
+	"io/ioutil"
+)
+
+func InitConfig(path string) (*Config, error) {
+	data, err := ioutil.ReadFile(path)
+	if err != nil {
+		return nil, err
+	}
+	Conf := new(Config)
+	err = yaml.Unmarshal(data, Conf)
+	if err != nil {
+		return nil, err
+	}
+	return Conf, nil
+}
 
 type Config struct {
 	Redis    Redis    `yaml:"redis"`

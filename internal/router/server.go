@@ -1,22 +1,21 @@
 package router
 
 import (
-	config2 "Forester/config"
 	proto "Forester/grpc"
-	"Forester/internal/config"
+	"Forester/internal/pkg"
 	"fmt"
 	"github.com/gin-gonic/gin"
 )
 
 type RouteServer struct {
-	Config *config2.Config
+	Config *pkg.Config
 	Http   *gin.Engine
 	Client proto.ApiClient
 }
 
 func ServerInit(path string) (*RouteServer, error) {
 	server := new(RouteServer)
-	conf, err := config.InitConfig(path)
+	conf, err := pkg.InitConfig(path)
 	if err != nil {
 		fmt.Println(err.Error())
 		return nil, err

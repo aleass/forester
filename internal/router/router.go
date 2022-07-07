@@ -1,15 +1,15 @@
 package router
 
 import (
-	"Forester/config"
 	proto "Forester/grpc"
+	"Forester/internal/pkg"
 	"context"
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"strconv"
 )
 
-func NewHttp(c *config.Config) *gin.Engine {
+func NewHttp(c *pkg.Config) *gin.Engine {
 	engine := gin.New()
 	engine.Use(recoverHandler)
 	go func() {
@@ -20,29 +20,40 @@ func NewHttp(c *config.Config) *gin.Engine {
 	}()
 	return engine
 }
-func (s *RouteServer) initRouter() {
-	s.Http.GET("/add_url", s.AddUrl)
-	s.Http.GET("/limit", s.Limit)
-	s.Http.GET("/get_task_count", s.GetTaskCount)
+func (r *RouteServer) initRouter() {
+	r.Http.GET("/add_url", r.AddUrl)
+	r.Http.GET("/limit", r.Limit)
+	r.Http.GET("/get_task_count", r.GetTaskCount)
 }
-func (s *RouteServer) AddUrl(c *gin.Context) {
+func (r *RouteServer) AddUrl(c *gin.Context) {
 	value, ok := c.GetQuery("url")
 	if !ok {
 		return
 	}
 	var list = &proto.UrlList{Url: []string{value}}
-	s.Client.AddUrl(context.Background(), list)
+	_, err := r.Client.AddUrl(context.Background(), list)
+	if err != nil {
+		c.JSON(500, err.Error())
+	}
 }
 
-func (s *RouteServer) GetTaskCount(c *gin.Context) {
-	s.Client.GetTaskCount(context.Background(), &proto.Empty{})
+func (r *RouteServer) GetTaskCount(c *gin.Context) {
+	res, err := r.Client.GetTaskCount(context.Background(), &proto.Empty{})
+	if err != nil {
+		c.JSON(500, err.Error())
+	}
+	c.JSON(200, res.Count)
 }
 
-func (s *RouteServer) Limit(c *gin.Context) {
+func (r *RouteServer) Limit(c *gin.Context) {
 	value, ok := c.GetQuery("rate")
 	if !ok {
 		return
 	}
 	res, _ := strconv.Atoi(value)
-	s.Client.Limit(context.Background(), &proto.LimitDown{Rate: int64(res)})
+	_, err := r.Client.Limit(context.Background(), &proto.LimitDown{Rate: int64(res)})
+	if err != nil {
+		c.JSON(500, err.Error())
+	}
+	c.JSON(200, "ok")
 }

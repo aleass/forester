@@ -1,19 +1,19 @@
 package manager
 
 import (
-	config2 "Forester/config"
 	proto "Forester/grpc"
-	"Forester/internal/config"
+	"Forester/internal/pkg"
 	"context"
 	"fmt"
 	client "go.etcd.io/etcd/client/v3"
 )
 
 type Server struct {
-	Config *config2.Config
+	Config *pkg.Config
 	Etcd   *client.Client
 	url    chan string
 	crawl  map[string]*clients
+	limit  int64
 	c, a   int
 }
 
@@ -22,7 +22,7 @@ var server *Server
 func ServerInit(path string) (*Server, error) {
 	server = new(Server)
 	server.crawl = make(map[string]*clients, 100)
-	conf, err := config.InitConfig(path)
+	conf, err := pkg.InitConfig(path)
 	if err != nil {
 		fmt.Println(err.Error())
 		return nil, err
@@ -68,7 +68,8 @@ func (s Server) run() {
 }
 
 func OrderClient(client *clients, url string) {
-	res, err := (*client.client).SendTask(context.Background())
+	obj := *client.client
+	res, err := obj.SendTask(context.Background())
 	if err != nil {
 		fmt.Println(err.Error())
 	}
@@ -87,6 +88,12 @@ func OrderClient(client *clients, url string) {
 				return
 			}
 			fmt.Println(task.Uuid)
+			count, err := obj.GetTaskCount(context.Background(), &proto.Empty{})
+			if err != nil {
+				fmt.Println(err.Error())
+				return
+			}
+			client.taskCount = count.Num
 		}
 	}()
 	for url := range client.taskList {
@@ -98,6 +105,12 @@ func OrderClient(client *clients, url string) {
 			fmt.Println(err.Error())
 			return
 		}
+	}
+}
+
+func (s *Server) Limit() {
+	for _, c := range s.crawl {
+		(*c.client).Limit(context.Background(), &proto.LimitDown{Rate: s.limit})
 	}
 }
 

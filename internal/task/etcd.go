@@ -1,15 +1,13 @@
 package task
 
 import (
-	"Forester/config"
+	"Forester/internal/pkg"
 	"context"
 	client "go.etcd.io/etcd/client/v3"
-	"net"
-	"strings"
 	"time"
 )
 
-func newEtcd(conf *config.Config) (*client.Client, error) {
+func newEtcd(conf *pkg.Config) (*client.Client, error) {
 	cli, err := client.New(client.Config{
 		Endpoints:   []string{conf.Etcd.Addr},
 		DialTimeout: 3 * time.Second,
@@ -38,28 +36,4 @@ func (s *Server) register() {
 		}
 	}
 
-}
-
-// InternalIP return internal ip.
-func InternalIP() string {
-	inters, err := net.Interfaces()
-	if err != nil {
-		return ""
-	}
-	for _, inter := range inters {
-		if inter.Flags&net.FlagUp != 0 && !strings.HasPrefix(inter.Name, "lo") {
-			addrs, err := inter.Addrs()
-			if err != nil {
-				continue
-			}
-			for _, addr := range addrs {
-				if ipnet, ok := addr.(*net.IPNet); ok && !ipnet.IP.IsLoopback() {
-					if ipnet.IP.To4() != nil {
-						return ipnet.IP.String()
-					}
-				}
-			}
-		}
-	}
-	return ""
 }

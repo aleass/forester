@@ -3,6 +3,7 @@ package manager
 import (
 	proto "Forester/grpc"
 	"context"
+	"fmt"
 	"go.etcd.io/etcd/api/v3/mvccpb"
 	client "go.etcd.io/etcd/client/v3"
 	"google.golang.org/grpc"
@@ -26,8 +27,10 @@ func (s *Server) watch() {
 			for _, event := range response.Events {
 				key := string(event.Kv.Key)
 				if event.Type == mvccpb.PUT {
+					fmt.Println("manager:watch put:", key)
 					s.crawl[key] = s.NewClient(string(event.Kv.Value))
 				} else {
+					fmt.Println("manager:watch delete:", key)
 					delete(s.crawl, key)
 				}
 			}
@@ -40,6 +43,7 @@ func (s *Server) GetClient() {
 	if err != nil {
 		panic(err.Error())
 	}
+	fmt.Println("发现服务：", len(res.Kvs))
 	for _, v := range res.Kvs {
 		s.crawl[string(v.Key)] = s.NewClient(string(v.Value))
 	}
@@ -50,9 +54,9 @@ func (s *Server) NewClient(addr string) *clients {
 	if err != nil {
 		panic(err.Error())
 	}
-	client := proto.NewTaskClient(conn)
+	cli := proto.NewTaskClient(conn)
 	return &clients{
-		client:   &client,
+		client:   &cli,
 		taskList: make(chan string, 1000),
 	}
 }

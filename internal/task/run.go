@@ -1,17 +1,17 @@
 package task
 
-type TaskInfo struct {
+type TasksObj struct {
 	Url  string
 	Uuid int64
-	Pre  *TaskInfo
-	Next *TaskInfo
+	Pre  *TasksObj
+	Next *TasksObj
 }
 
 func (s *Server) run() {
 
 }
 
-//func (g *Server) Add(s *TaskInfo) {
+//func (g *Server) Add(s *TasksObj) {
 //	if g.task != nil {
 //		s.Next = g.task.Next
 //		g.task.Pre = s
@@ -19,7 +19,7 @@ func (s *Server) run() {
 //	g.task = s
 //}
 
-//func (g *Server) Del(s *TaskInfo) {
+//func (g *Server) Del(s *TasksObj) {
 //	if s == nil {
 //		return
 //	}
