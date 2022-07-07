@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 package proto;
-
+import "api.proto";
 option go_package = ".;proto";
 
 message TaskReq {
@@ -10,9 +10,15 @@ message TaskReq {
 }
 
 message Finish {
-    int64 uuid = 1;
+  int64 uuid = 1;
+}
+
+message Count {
+  int64 num = 1;
 }
 
 service Task {
-    rpc SendTask (stream TaskReq)returns(stream Finish);
+  rpc SendTask (stream TaskReq)returns(stream Finish);
+  rpc GetTaskCount (Empty)returns(Count);
+  rpc Limit (LimitDown)returns(Response);
 }

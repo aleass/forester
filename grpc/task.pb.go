@@ -131,20 +131,75 @@ func (x *Finish) GetUuid() int64 {
 	return 0
 }
 
+type Count struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Num int64 `protobuf:"varint,1,opt,name=num,proto3" json:"num,omitempty"`
+}
+
+func (x *Count) Reset() {
+	*x = Count{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_task_proto_msgTypes[2]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Count) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Count) ProtoMessage() {}
+
+func (x *Count) ProtoReflect() protoreflect.Message {
+	mi := &file_task_proto_msgTypes[2]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Count.ProtoReflect.Descriptor instead.
+func (*Count) Descriptor() ([]byte, []int) {
+	return file_task_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *Count) GetNum() int64 {
+	if x != nil {
+		return x.Num
+	}
+	return 0
+}
+
 var File_task_proto protoreflect.FileDescriptor
 
 var file_task_proto_rawDesc = []byte{
 	0x0a, 0x0a, 0x74, 0x61, 0x73, 0x6b, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x05, 0x70, 0x72,
-	0x6f, 0x74, 0x6f, 0x22, 0x2f, 0x0a, 0x07, 0x54, 0x61, 0x73, 0x6b, 0x52, 0x65, 0x71, 0x12, 0x10,
-	0x0a, 0x03, 0x55, 0x72, 0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x55, 0x72, 0x6c,
-	0x12, 0x12, 0x0a, 0x04, 0x75, 0x75, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x03, 0x52, 0x04,
-	0x75, 0x75, 0x69, 0x64, 0x22, 0x1c, 0x0a, 0x06, 0x46, 0x69, 0x6e, 0x69, 0x73, 0x68, 0x12, 0x12,
-	0x0a, 0x04, 0x75, 0x75, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x04, 0x75, 0x75,
-	0x69, 0x64, 0x32, 0x35, 0x0a, 0x04, 0x54, 0x61, 0x73, 0x6b, 0x12, 0x2d, 0x0a, 0x08, 0x53, 0x65,
-	0x6e, 0x64, 0x54, 0x61, 0x73, 0x6b, 0x12, 0x0e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x54,
-	0x61, 0x73, 0x6b, 0x52, 0x65, 0x71, 0x1a, 0x0d, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x46,
-	0x69, 0x6e, 0x69, 0x73, 0x68, 0x28, 0x01, 0x30, 0x01, 0x42, 0x09, 0x5a, 0x07, 0x2e, 0x3b, 0x70,
-	0x72, 0x6f, 0x74, 0x6f, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x6f, 0x74, 0x6f, 0x1a, 0x09, 0x61, 0x70, 0x69, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x2f,
+	0x0a, 0x07, 0x54, 0x61, 0x73, 0x6b, 0x52, 0x65, 0x71, 0x12, 0x10, 0x0a, 0x03, 0x55, 0x72, 0x6c,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x55, 0x72, 0x6c, 0x12, 0x12, 0x0a, 0x04, 0x75,
+	0x75, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x03, 0x52, 0x04, 0x75, 0x75, 0x69, 0x64, 0x22,
+	0x1c, 0x0a, 0x06, 0x46, 0x69, 0x6e, 0x69, 0x73, 0x68, 0x12, 0x12, 0x0a, 0x04, 0x75, 0x75, 0x69,
+	0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x04, 0x75, 0x75, 0x69, 0x64, 0x22, 0x19, 0x0a,
+	0x05, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x12, 0x10, 0x0a, 0x03, 0x6e, 0x75, 0x6d, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x03, 0x52, 0x03, 0x6e, 0x75, 0x6d, 0x32, 0x8d, 0x01, 0x0a, 0x04, 0x54, 0x61, 0x73,
+	0x6b, 0x12, 0x2d, 0x0a, 0x08, 0x53, 0x65, 0x6e, 0x64, 0x54, 0x61, 0x73, 0x6b, 0x12, 0x0e, 0x2e,
+	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x54, 0x61, 0x73, 0x6b, 0x52, 0x65, 0x71, 0x1a, 0x0d, 0x2e,
+	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x46, 0x69, 0x6e, 0x69, 0x73, 0x68, 0x28, 0x01, 0x30, 0x01,
+	0x12, 0x2a, 0x0a, 0x0c, 0x47, 0x65, 0x74, 0x54, 0x61, 0x73, 0x6b, 0x43, 0x6f, 0x75, 0x6e, 0x74,
+	0x12, 0x0c, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x1a, 0x0c,
+	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x12, 0x2a, 0x0a, 0x05,
+	0x4c, 0x69, 0x6d, 0x69, 0x74, 0x12, 0x10, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x4c, 0x69,
+	0x6d, 0x69, 0x74, 0x44, 0x6f, 0x77, 0x6e, 0x1a, 0x0f, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x42, 0x09, 0x5a, 0x07, 0x2e, 0x3b, 0x70, 0x72,
+	0x6f, 0x74, 0x6f, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -159,16 +214,24 @@ func file_task_proto_rawDescGZIP() []byte {
 	return file_task_proto_rawDescData
 }
 
-var file_task_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_task_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_task_proto_goTypes = []interface{}{
-	(*TaskReq)(nil), // 0: proto.TaskReq
-	(*Finish)(nil),  // 1: proto.Finish
+	(*TaskReq)(nil),   // 0: proto.TaskReq
+	(*Finish)(nil),    // 1: proto.Finish
+	(*Count)(nil),     // 2: proto.Count
+	(*Empty)(nil),     // 3: proto.Empty
+	(*LimitDown)(nil), // 4: proto.LimitDown
+	(*Response)(nil),  // 5: proto.Response
 }
 var file_task_proto_depIdxs = []int32{
 	0, // 0: proto.Task.SendTask:input_type -> proto.TaskReq
-	1, // 1: proto.Task.SendTask:output_type -> proto.Finish
-	1, // [1:2] is the sub-list for method output_type
-	0, // [0:1] is the sub-list for method input_type
+	3, // 1: proto.Task.GetTaskCount:input_type -> proto.Empty
+	4, // 2: proto.Task.Limit:input_type -> proto.LimitDown
+	1, // 3: proto.Task.SendTask:output_type -> proto.Finish
+	2, // 4: proto.Task.GetTaskCount:output_type -> proto.Count
+	5, // 5: proto.Task.Limit:output_type -> proto.Response
+	3, // [3:6] is the sub-list for method output_type
+	0, // [0:3] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name
@@ -179,6 +242,7 @@ func file_task_proto_init() {
 	if File_task_proto != nil {
 		return
 	}
+	file_api_proto_init()
 	if !protoimpl.UnsafeEnabled {
 		file_task_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*TaskReq); i {
@@ -204,6 +268,18 @@ func file_task_proto_init() {
 				return nil
 			}
 		}
+		file_task_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*Count); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -211,7 +287,7 @@ func file_task_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_task_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   2,
+			NumMessages:   3,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
@@ -238,6 +314,8 @@ const _ = grpc.SupportPackageIsVersion6
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type TaskClient interface {
 	SendTask(ctx context.Context, opts ...grpc.CallOption) (Task_SendTaskClient, error)
+	GetTaskCount(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Count, error)
+	Limit(ctx context.Context, in *LimitDown, opts ...grpc.CallOption) (*Response, error)
 }
 
 type taskClient struct {
@@ -279,9 +357,29 @@ func (x *taskSendTaskClient) Recv() (*Finish, error) {
 	return m, nil
 }
 
+func (c *taskClient) GetTaskCount(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Count, error) {
+	out := new(Count)
+	err := c.cc.Invoke(ctx, "/proto.Task/GetTaskCount", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *taskClient) Limit(ctx context.Context, in *LimitDown, opts ...grpc.CallOption) (*Response, error) {
+	out := new(Response)
+	err := c.cc.Invoke(ctx, "/proto.Task/Limit", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // TaskServer is the server API for Task service.
 type TaskServer interface {
 	SendTask(Task_SendTaskServer) error
+	GetTaskCount(context.Context, *Empty) (*Count, error)
+	Limit(context.Context, *LimitDown) (*Response, error)
 }
 
 // UnimplementedTaskServer can be embedded to have forward compatible implementations.
@@ -290,6 +388,12 @@ type UnimplementedTaskServer struct {
 
 func (*UnimplementedTaskServer) SendTask(Task_SendTaskServer) error {
 	return status.Errorf(codes.Unimplemented, "method SendTask not implemented")
+}
+func (*UnimplementedTaskServer) GetTaskCount(context.Context, *Empty) (*Count, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetTaskCount not implemented")
+}
+func (*UnimplementedTaskServer) Limit(context.Context, *LimitDown) (*Response, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Limit not implemented")
 }
 
 func RegisterTaskServer(s *grpc.Server, srv TaskServer) {
@@ -322,10 +426,55 @@ func (x *taskSendTaskServer) Recv() (*TaskReq, error) {
 	return m, nil
 }
 
+func _Task_GetTaskCount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TaskServer).GetTaskCount(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/proto.Task/GetTaskCount",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TaskServer).GetTaskCount(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Task_Limit_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(LimitDown)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TaskServer).Limit(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/proto.Task/Limit",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TaskServer).Limit(ctx, req.(*LimitDown))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _Task_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "proto.Task",
 	HandlerType: (*TaskServer)(nil),
-	Methods:     []grpc.MethodDesc{},
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "GetTaskCount",
+			Handler:    _Task_GetTaskCount_Handler,
+		},
+		{
+			MethodName: "Limit",
+			Handler:    _Task_Limit_Handler,
+		},
+	},
 	Streams: []grpc.StreamDesc{
 		{
 			StreamName:    "SendTask",
