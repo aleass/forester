@@ -14,7 +14,7 @@ var limit int64
 //kb
 const kb = 1024
 
-func httpLimit(url string) {
+func httpLimit(url, i string) {
 	limit = 500 * kb
 	data, err := http.Get(url)
 	if err != nil {
@@ -22,7 +22,7 @@ func httpLimit(url string) {
 	}
 	var buff = make([]byte, kb*10)
 	var temp int64
-	var f, _ = os.OpenFile("qq.exe", os.O_CREATE|os.O_RDONLY|os.O_TRUNC, 0655)
+	var f, _ = os.OpenFile(i+"qq.exe", os.O_CREATE|os.O_RDONLY|os.O_TRUNC, 0655)
 	t := time.Now().Unix()
 	//测试模仿途中修改限速
 	go func() {

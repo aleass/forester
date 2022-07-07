@@ -11,6 +11,7 @@ type Server struct {
 	Config *config2.Config
 	Etcd   *clientv3.Client
 	task   chan *TaskInfo
+	addr   string
 }
 
 var server *Server
@@ -19,13 +20,14 @@ func ServerInit(path string) (*Server, error) {
 	server = new(Server)
 	server.task = make(chan *TaskInfo, 1000)
 	conf, err := config.InitConfig(path)
+	server.addr = InternalIP() + ":" + conf.TaskGrpc.Port
 	if err != nil {
 		fmt.Println(err.Error())
 		return nil, err
 	}
 	server.Config = conf
 	server.Etcd, _ = newEtcd(conf)
-	go newGrpc(conf)
+	go server.newGrpc()
 	server.register()
 	return server, nil
 }

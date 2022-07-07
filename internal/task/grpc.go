@@ -1,17 +1,17 @@
 package task
 
 import (
-	"Forester/config"
 	proto "Forester/grpc"
 	"fmt"
 	"google.golang.org/grpc"
 	"net"
+	"strconv"
 )
 
-func newGrpc(conf *config.Config) {
+func (s *Server) newGrpc() {
 	grpcServer := grpc.NewServer()
 	proto.RegisterTaskServer(grpcServer, &serviceGrpc{})
-	lis, err := net.Listen("tcp", conf.TaskGrpc.Addr)
+	lis, err := net.Listen("tcp", s.addr)
 	if err != nil {
 		fmt.Println(err)
 	}
@@ -36,10 +36,13 @@ func (s serviceGrpc) SendTask(res proto.Task_SendTaskServer) error {
 			}
 		}
 	}()
+	var i int
 	for true {
 		for info := range server.task {
-			httpLimit(info.Url)
+			fmt.Println("start download:", info.Url)
+			httpLimit(info.Url, strconv.Itoa(i))
 			res.Send(&proto.Finish{Uuid: info.Uuid})
+			i++
 		}
 	}
 	return nil

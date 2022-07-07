@@ -22,14 +22,14 @@ func newEtcd(conf *config.Config) (*client.Client, error) {
 
 func (s *Server) register() {
 	info := s.Config.Etcd.TaskPre
-	key := info + InternalIP()
+	key := info + s.addr
 	// 创建一个租约
 	resp, err := s.Etcd.Grant(context.TODO(), 5)
 	if err != nil {
 		panic(err.Error())
 	}
 
-	_, err = s.Etcd.Put(context.TODO(), key, InternalIP(), client.WithLease(resp.ID))
+	_, err = s.Etcd.Put(context.TODO(), key, s.addr, client.WithLease(resp.ID))
 
 	ch, _ := s.Etcd.KeepAlive(context.TODO(), resp.ID)
 	for {
