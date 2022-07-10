@@ -10,11 +10,12 @@ type Server struct {
 	Etcd   *client3.Client
 	task   chan *TasksObj
 	addr   string
+	log    *pkg.MyLog
 }
 
 var server *Server
 
-func ServerInit(path string) (*Server, error) {
+func ServerInit(path string) *Server {
 	server = new(Server)
 	server.task = make(chan *TasksObj, 1000)
 	conf, err := pkg.InitConfig(path)
@@ -29,7 +30,8 @@ func ServerInit(path string) (*Server, error) {
 	}
 	go server.newGrpc()
 	server.register()
-	return server, nil
+	server.log = pkg.New("task", true)
+	return server
 }
 func (s *Server) Close() {
 

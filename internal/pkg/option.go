@@ -12,7 +12,7 @@ type Option struct {
 	errCode int
 }
 
-func (o *Option) registerOption(log *myLog) []zap.Field {
+func (o *Option) registerOption(log *MyLog) []zap.Field {
 	var res []zap.Field
 	if o.traceID != "" {
 		res = append(res, zap.String("traceID", o.traceID))

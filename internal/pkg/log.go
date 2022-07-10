@@ -10,7 +10,7 @@ import (
 	"unsafe"
 )
 
-type myLog struct {
+type MyLog struct {
 	name  string
 	debug bool
 	*zap.Logger
@@ -19,8 +19,8 @@ type myLog struct {
 //New 返回一个日志对象
 //@ name 日志名字
 //@ debug ：true打印到控制台，false 打印到日志
-func New(name string, debug bool) *myLog {
-	log := &myLog{
+func New(name string, debug bool) *MyLog {
+	log := &MyLog{
 		name:  name,
 		debug: debug,
 	}
@@ -29,7 +29,7 @@ func New(name string, debug bool) *myLog {
 }
 
 // init 初始化日志
-func (log *myLog) init() {
+func (log *MyLog) init() {
 	encoderConfig := zapcore.EncoderConfig{
 		TimeKey:       "time",
 		LevelKey:      "level",
@@ -101,11 +101,11 @@ func (log *myLog) init() {
 	log.Logger = logger
 }
 
-func (log *myLog) Close() error {
+func (log *MyLog) Close() error {
 	return nil
 }
 
-func (log *myLog) MError(err error, opt ...option) {
+func (log *MyLog) MError(err error, opt ...option) {
 	if err == nil {
 		return
 	}
@@ -120,7 +120,7 @@ func (log *myLog) MError(err error, opt ...option) {
 	log.Error(err.Error(), fields...)
 }
 
-func (log *myLog) MInfo(info string, opt ...option) {
+func (log *MyLog) MInfo(info string, opt ...option) {
 	register := &Option{}
 	for _, o := range opt {
 		o(register)
@@ -131,7 +131,7 @@ func (log *myLog) MInfo(info string, opt ...option) {
 	log.Info(info, fields...)
 }
 
-func (log *myLog) split(err error) ([]string, string /*cause line*/) {
+func (log *MyLog) split(err error) ([]string, string /*cause line*/) {
 	str := fmt.Sprintf("%+v", err)
 	tem := strings.Split(str, "\n")
 	temCause := "can't get error stack "

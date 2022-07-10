@@ -26,7 +26,7 @@ func newServer(conf *pkg.Config) {
 	proto.RegisterApiServer(grpcServer, &service{})
 	lis, err := net.Listen("tcp", conf.ApiGrpc.Addr)
 	if err != nil {
-		fmt.Println(err)
+		panic(err)
 	}
 	grpcServer.Serve(lis)
 }
