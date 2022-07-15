@@ -22,6 +22,11 @@ func (s *Server) newGrpc() {
 type serviceGrpc struct {
 }
 
+func (s serviceGrpc) Login(ctx context.Context, empty *proto.Empty) (*proto.Response, error) {
+	//TODO implement me
+	panic("implement me")
+}
+
 func (s serviceGrpc) GetTaskCount(ctx context.Context, empty *proto.Empty) (*proto.Count, error) {
 	fmt.Println("task run get task count", len(server.task))
 	return &proto.Count{Num: int64(len(server.task))}, nil

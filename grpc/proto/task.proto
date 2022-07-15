@@ -4,8 +4,13 @@ package proto;
 import "api.proto";
 option go_package = ".;proto";
 
+message Header {
+  string name = 1;
+  string val = 3;
+}
 message TaskReq {
   string Url = 1;
+  repeated Header header= 3;
   int64 uuid = 2;
 }
 
@@ -17,8 +22,10 @@ message Count {
   int64 num = 1;
 }
 
+
 service Task {
   rpc SendTask (stream TaskReq)returns(stream Finish);
   rpc GetTaskCount (Empty)returns(Count);
   rpc Limit (LimitDown)returns(Response);
+  rpc Login (Empty)returns(Response);
 }
